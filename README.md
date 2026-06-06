@@ -1,2 +1,2 @@
-# my-simple-site
+# simple
 我的爱马仕助力帮我建的一个最简单的网站
