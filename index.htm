@@ -30,6 +30,11 @@
             font-size: 0.9rem;
             color: #999;
         }
+        .signature {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #888;
+        }
     </style>
 </head>
 <body>
@@ -44,12 +49,15 @@
         今日访问：<span id="today">0</span> | 总访问：<span id="total">0</span>
     </div>
 
+    <div class="signature"> — 由你的小助手制作 ✨</div>
+
     <script>
         // 动态时钟
         function updateClock() {
             const now = new Date();
             const time = now.toLocaleTimeString('zh-CN', { hour12: false });
             const date = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
+            // 修复：补充模板字符串反引号 ``
             document.getElementById('clock').textContent = `${date} ${time}`;
         }
         setInterval(updateClock, 1000);
