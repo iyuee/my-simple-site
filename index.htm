@@ -7,7 +7,7 @@
     <style>
         :root {
             --primary-gold: #dfc59e;
-            --dark-bg: #0b0c0e;
+            --dark-bg: #000000;
             --card-bg: rgba(22, 24, 29, 0.7);
             --text-light: #f3f4f6;
             --text-muted: #9ca3af;
@@ -23,13 +23,13 @@
             overflow-x: hidden;
         }
 
-        /* 顶部导航栏 */
+        /* 顶部导航栏 背景统一纯黑，弱化分割线 */
         header {
             position: fixed;
             top: 0; left: 0; width: 100%;
             height: 80px;
-            background: rgba(11, 12, 14, 0.9);
-            border-bottom: 1px solid rgba(223, 197, 158, 0.15);
+            background: var(--dark-bg);
+            border-bottom: 1px solid rgba(223, 197, 158, 0.08);
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -96,6 +96,7 @@
             flex-direction: column;
             align-items: center;
             padding: 4% 6%;
+            background: var(--dark-bg);
         }
 
         .hero-section {
@@ -124,18 +125,15 @@
             margin-bottom: 35px;
         }
 
-        /* 右侧主图 - 已替换为你上传的纯黑背景美女 */
+        /* 右侧主图 移除渐变蒙版，背景完全融合 */
         .hero-image-wrapper {
             position: relative;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: none;
         }
         .hero-image-wrapper::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(11,12,14,0.3), transparent);
+            display: none;
         }
         .hero-image {
             width: 100%;
@@ -145,7 +143,7 @@
             display: block;
         }
 
-        /* 下方作品集网格 */
+        /* 下方作品集标题分割线弱化 */
         .portfolio-title {
             width: 100%;
             max-width: 1200px;
@@ -154,7 +152,7 @@
             color: var(--primary-gold);
             letter-spacing: 3px;
             margin-bottom: 20px;
-            border-bottom: 1px solid rgba(223, 197, 158, 0.1);
+            border-bottom: 1px solid rgba(223, 197, 158, 0.08);
             padding-bottom: 10px;
         }
 
@@ -243,11 +241,4 @@
                 <div class="portfolio-mask">摩登都市系列</div>
             </div>
             <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=cover&w=500&q=80" alt="Collection 3">
-                <div class="portfolio-mask">经典黑白赫本风</div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=cover&w=500&q=80" alt="Collection 4">
-                <div class="portfolio-mask">光影缪斯系列</div>
-            </div>
-        </section>
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=co
