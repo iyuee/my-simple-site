@@ -3,84 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>哥哥的小站</title>
+    <title>ELIZA M. PORTRAITS | 奢华人像摄影艺术</title>
     <style>
-        * {margin: 0; padding: 0; box-sizing: border-box;}
+        :root {
+            --primary-gold: #dfc59e;
+            --dark-bg: #0b0c0e;
+            --card-bg: rgba(22, 24, 29, 0.7);
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
-            font-family: system-ui, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Cinzel', 'Noto Serif SC', serif;
+            letter-spacing: 1px;
+            overflow-x: hidden;
+        }
+
+        /* 顶部导航栏 */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            height: 80px;
+            background: rgba(11, 12, 14, 0.9);
+            border-bottom: 1px solid rgba(223, 197, 158, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-area {
             text-align: center;
-            min-height: 100vh;
+        }
+        .logo-title {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            font-weight: 500;
+            letter-spacing: 4px;
+        }
+        .logo-sub {
+            font-size: 0.6rem;
+            color: var(--primary-gold);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+        nav a:hover, nav li.active a {
+            color: var(--primary-gold);
+        }
+
+        .btn-consult {
+            border: 1px solid var(--primary-gold);
+            padding: 10px 22px;
+            background: transparent;
+            color: var(--primary-gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .btn-consult:hover {
+            background: var(--primary-gold);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px rgba(223, 197, 158, 0.3);
+        }
+
+        /* 主体布局 */
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 20px;
-            /* 柔和浅绿渐变背景 */
-            background: linear-gradient(135deg, #f0f9f0, #e8f5e9);
+            align-items: center;
+            padding: 4% 6%;
         }
-        h1 {color: #4CAF50; margin-bottom: 20px; font-size: 2rem;}
-        .emoji {font-size: 26px; margin: 20px 0;}
-        p {color: #666; line-height: 1.8; margin: 8px 0; font-size: 1rem;}
-        .clock {
-            margin: 20px 0;
-            font-size: 1.2rem;
-            color: #4CAF50;
+
+        .hero-section {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
         }
-        .counter {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: #999;
+
+        .hero-text h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #fff, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .signature {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            color: #888;
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        /* 右侧主打美女图（使用高质量 Unsplash 艺术摄影肖像） */
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+        .hero-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(11,12,14,0.4), transparent);
+        }
+        .hero-image {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 下方作品集网格 */
+        .portfolio-title {
+            width: 100%;
+            max-width: 1200px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: var(--primary-gold);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(223, 197, 158, 0.1);
+            padding-bottom: 10px;
+        }
+
+        .portfolio-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        .portfolio-mask {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            font-size: 0.75rem;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 900px) {
+            .hero-section { grid-template-columns: 1fr; gap: 30px; }
+            nav, .btn-consult { display: none; }
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-image { height: 400px; }
         }
     </style>
 </head>
 <body>
-    <h1>你好，哥哥～</h1>
-    <div class="emoji">✿◠‿◠✿</div>
-    <p>这是我用最简单的方法搭建的网站哦～</p>
-    <p>即使不用Cloudflare也能开心地访问呢！💖</p>
 
-    <div class="clock" id="clock"></div>
+    <header>
+        <div class="logo-area">
+            <div class="logo-title">ELIZA M.</div>
+            <div class="logo-sub">Portraits</div>
+        </div>
+        <nav>
+            <ul>
+                <li class="active"><a href="#">首页</a></li>
+                <li><a href="#">作品集</a></li>
+                <li><a href="#">创作美学</a></li>
+                <li><a href="#">联系我们</a></li>
+            </ul>
+        </nav>
+        <button class="btn-consult">预约咨询</button>
+    </header>
 
-    <div class="counter">
-        今日访问：<span id="today">0</span> | 总访问：<span id="total">0</span>
-    </div>
+    <main>
+        <section class="hero-section">
+            <div class="hero-text">
+                <h1>THE ART OF<br>LUXURY PORTRAITURE.</h1>
+                <p>捕捉光影流转间的优雅瞬间，定制属于你的高端艺术私享肖像。每一帧，都是写在时光里的绝美诗篇。</p>
+                <button class="btn-consult" style="display: inline-block;">探索画廊</button>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=cover&w=800&q=80" alt="Premium Portrait" class="hero-image">
+            </div>
+        </section>
 
-    <div class="signature"> — 由你的小助手制作 ✨</div>
+        <div class="portfolio-title">精选作品集 / Gallery Collection</div>
+        
+        <section class="portfolio-grid">
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=cover&w=500&q=80" alt="Collection 1">
+                <div class="portfolio-mask">复古暖阳系列</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=cover&w=500&q=80" alt="Collection 2">
+                <div class="portfolio-mask">摩登都市系列</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=cover&w=500&q=80" alt="Collection 3">
+                <div class="portfolio-mask">经典黑白赫本风</div>
+            </div>
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=cover&w=500&q=80" alt="Collection 4">
+                <div class="portfolio-mask">光影缪斯系列</div>
+            </div>
+        </section>
+    </main>
 
-    <script>
-        // 动态时钟
-        function updateClock() {
-            const now = new Date();
-            const time = now.toLocaleTimeString('zh-CN', { hour12: false });
-            const date = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
-            // 修复：补充模板字符串反引号 ``
-            document.getElementById('clock').textContent = `${date} ${time}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // 访客计数
-        let total = localStorage.getItem('visit_total') || 0;
-        let today = localStorage.getItem('visit_today') || 0;
-        let lastDate = localStorage.getItem('visit_date');
-        const now = new Date().toDateString();
-
-        if (lastDate !== now) {
-            today = 0;
-            localStorage.setItem('visit_date', now);
-        }
-
-        total++;
-        today++;
-        localStorage.setItem('visit_total', total);
-        localStorage.setItem('visit_today', today);
-
-        document.getElementById('today').textContent = today;
-        document.getElementById('total').textContent = total;
-    </script>
 </body>
 </html>
