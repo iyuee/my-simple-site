@@ -3,242 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELIZA M. PORTRAITS | 奢华人像摄影艺术</title>
+    <title>EDGE | 潮酷个性</title>
     <style>
-        :root {
-            --primary-gold: #dfc59e;
-            --dark-bg: #000000;
-            --card-bg: rgba(22, 24, 29, 0.7);
-            --text-light: #f3f4f6;
-            --text-muted: #9ca3af;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        /* 全局统一纯黑背景，和图片一致 */
         body {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            font-family: 'Cinzel', 'Noto Serif SC', serif;
-            letter-spacing: 1px;
-            overflow-x: hidden;
+            background: #000000;
+            color: #ffffff;
         }
-
-        /* 顶部导航栏 背景统一纯黑，弱化分割线 */
+        /* 导航栏 */
         header {
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            height: 80px;
-            background: var(--dark-bg);
-            border-bottom: 1px solid rgba(223, 197, 158, 0.08);
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 0 4%;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+            align-items: center;
+            padding: 1.8rem 6%;
+            background: #000000;
         }
-
-        .logo-area {
-            text-align: center;
+        .brand {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff3e6c;
         }
-        .logo-title {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            font-weight: 500;
-            letter-spacing: 4px;
-        }
-        .logo-sub {
-            font-size: 0.6rem;
-            color: var(--primary-gold);
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        nav a {
-            color: var(--text-muted);
+        .menu a {
+            color: #ccc;
             text-decoration: none;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            transition: color 0.3s;
+            margin: 0 1.2rem;
+            font-size: 1rem;
+            transition: color 0.3s ease;
         }
-        nav a:hover, nav li.active a {
-            color: var(--primary-gold);
+        .menu a:hover {
+            color: #ff3e6c;
         }
-
-        .btn-consult {
-            border: 1px solid var(--primary-gold);
-            padding: 10px 22px;
-            background: transparent;
-            color: var(--primary-gold);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s;
+        /* 主区块布局 */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - 86px);
         }
-        .btn-consult:hover {
-            background: var(--primary-gold);
-            color: var(--dark-bg);
-            box-shadow: 0 0 15px rgba(223, 197, 158, 0.3);
-        }
-
-        /* 主体布局 */
-        main {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
+        .content-left {
+            padding: 8% 6%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 4% 6%;
-            background: var(--dark-bg);
+            justify-content: center;
+            background: #000000;
         }
-
-        .hero-section {
-            width: 100%;
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 50px;
-            align-items: center;
-            margin-bottom: 60px;
+        .tag {
+            color: #ff3e6c;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
         }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            line-height: 1.2;
-            margin-bottom: 25px;
-            background: linear-gradient(to right, #fff, var(--primary-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        h2 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
         }
-        .hero-text p {
-            color: var(--text-muted);
-            font-size: 1rem;
+        .desc {
+            color: #999;
+            font-size: 1.05rem;
+            max-width: 420px;
+            margin-bottom: 3rem;
             line-height: 1.8;
-            margin-bottom: 35px;
         }
-
-        /* 右侧主图 移除渐变蒙版，背景完全融合 */
-        .hero-image-wrapper {
+        /* 按钮增强交互 */
+        .action-btn {
+            width: fit-content;
+            padding: 14px 40px;
+            background: #ff3e6c;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        /* 右侧图片区，移除蒙版，完全融合 */
+        .content-right {
+            background: #000000;
+            background-image: url('https://aka.doubaocdn.com/s/vtXp1wiyBk');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
             position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: none;
         }
-        .hero-image-wrapper::after {
+        .content-right::after {
             display: none;
         }
-        .hero-image {
-            width: 100%;
-            height: 550px;
-            object-fit: cover;
-            object-position: center top;
-            display: block;
-        }
-
-        /* 下方作品集标题分割线弱化 */
-        .portfolio-title {
-            width: 100%;
-            max-width: 1200px;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--primary-gold);
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(223, 197, 158, 0.08);
-            padding-bottom: 10px;
-        }
-
-        .portfolio-grid {
-            width: 100%;
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .portfolio-item {
-            position: relative;
-            height: 350px;
-            overflow: hidden;
-            border-radius: 6px;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-        }
-        .portfolio-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s;
-        }
-        .portfolio-item:hover img {
-            transform: scale(1.05);
-        }
-        .portfolio-mask {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; padding: 20px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            font-size: 0.75rem;
-            color: var(--primary-gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        @media (max-width: 900px) {
-            .hero-section { grid-template-columns: 1fr; gap: 30px; }
-            nav, .btn-consult { display: none; }
-            .hero-text h1 { font-size: 2.2rem; }
-            .hero-image { height: 400px; }
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            h2 {
+                font-size: 2.2rem;
+            }
+            .menu {
+                display: none;
+            }
+            .content-right {
+                min-height: 400px;
+            }
         }
     </style>
 </head>
 <body>
-
     <header>
-        <div class="logo-area">
-            <div class="logo-title">ELIZA M.</div>
-            <div class="logo-sub">Portraits</div>
+        <div class="brand">EDGE</div>
+        <div class="menu">
+            <a href="#">主页</a>
+            <a href="#">潮流</a>
+            <a href="#">案例</a>
+            <a href="#">合作</a>
         </div>
-        <nav>
-            <ul>
-                <li class="active"><a href="#">首页</a></li>
-                <li><a href="#">作品集</a></li>
-                <li><a href="#">创作美学</a></li>
-                <li><a href="#">联系我们</a></li>
-            </ul>
-        </nav>
-        <button class="btn-consult">预约咨询</button>
     </header>
 
-    <main>
-        <section class="hero-section">
-            <div class="hero-text">
-                <h1>THE ART OF<br>LUXURY PORTRAITURE.</h1>
-                <p>捕捉光影流转间的优雅瞬间，定制属于你的高端艺术私享肖像。每一帧，都是写在时光里的绝美诗篇。</p>
-                <button class="btn-consult" style="display: inline-block;">探索画廊</button>
-            </div>
-            <div class="hero-image-wrapper">
-                <img src="https://aka.doubaocdn.com/s/bnGb1wixwz" alt="Premium Portrait" class="hero-image">
-            </div>
-        </section>
-
-        <div class="portfolio-title">精选作品集 / Gallery Collection</div>
-        
-        <section class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=cover&w=500&q=80" alt="Collection 1">
-                <div class="portfolio-mask">复古暖阳系列</div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=cover&w=500&q=80" alt="Collection 2">
-                <div class="portfolio-mask">摩登都市系列</div>
-            </div>
-            <div class="portfolio-item">
-                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=co
+    <div class="container">
+        <div class="content-left">
+            <span class="tag">UNIQUE STYLE</span>
+            <h2>打破常规<br>塑造自我</h2>
+            <p class="desc">拒绝千篇一律，用创意表达态度。每一处设计，都为与众不同而生。</p>
+            <a href="#" class="action-btn">即刻了解</a>
+        </div>
+        <div class="content-right"></div>
+    </div>
+</body>
+</html>
